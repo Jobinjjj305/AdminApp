@@ -1,0 +1,30 @@
+﻿<!-- Views/Invoice/Index.cshtml -->
+@model StudentApp.Models.Invoice // Adjust namespace and model as per your project
+<script src="~/js/site.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate PDF</title>
+
+</head>
+<body>
+    <h2>Invoice Details</h2>
+    <div>
+        <p><strong>Invoice Number:</strong> @Model.InvoiceNumber</p>
+        <p><strong>Invoice Date:</strong> @Model.InvoiceDate.ToShortDateString()</p>
+        <p><strong>Customer Name:</strong> @Model.CustomerName</p>
+        <p><strong>Amount:</strong> @Model.Amount.ToString("C")</p>
+    </div>
+
+    <!-- Button to trigger PDF generation -->
+    <form method="post" action="/Invoice/generate">
+        <!-- Include form fields for invoice data -->
+        <input type="hidden" name="InvoiceNumber" value="@Model.InvoiceNumber" />
+        <input type="hidden" name="InvoiceDate" value="@Model.InvoiceDate" />
+        <input type="hidden" name="CustomerName" value="@Model.CustomerName" />
+        <input type="hidden" name="Amount" value="@Model.Amount" />
+
+        <button type="submit">Generate PDF</button>
+    </form>
+</body>
+</html>
